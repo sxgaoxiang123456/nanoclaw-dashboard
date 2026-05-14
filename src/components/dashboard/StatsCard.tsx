@@ -57,7 +57,7 @@ export function StatsCard({
             {displayValue}
           </div>
 
-          <div className="text-[13px] text-text2 mb-3">
+          <div className="text-[13px] text-text2 mb-3 truncate">
             {subtitle}
             {trend && (
               <span

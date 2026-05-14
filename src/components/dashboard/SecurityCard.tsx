@@ -1,5 +1,3 @@
-import { formatCurrency } from '@/lib/formatters'
-
 interface SecurityCardProps {
   icon: string
   title: string

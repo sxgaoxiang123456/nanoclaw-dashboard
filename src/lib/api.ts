@@ -2,8 +2,10 @@ import type { Agent, DashboardStats, LogEntry, SecurityStatus, Workflow } from '
 import { API_BASE_URL, CHAT_TIMEOUT_MS } from './constants'
 
 class ApiError extends Error {
-  constructor(public status: number, message: string) {
+  status: number
+  constructor(status: number, message: string) {
     super(message)
+    this.status = status
     this.name = 'ApiError'
   }
 }

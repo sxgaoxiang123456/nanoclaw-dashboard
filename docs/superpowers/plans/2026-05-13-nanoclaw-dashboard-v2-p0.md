@@ -2826,7 +2826,7 @@ git commit -m "feat: add chat panel component with message state machine"
 **Files:**
 - Modify: `src/routes/index.tsx`
 
-- [ ] **Step 1: Create full Dashboard page**
+- [x] **Step 1: Create full Dashboard page**
 
 Edit `src/routes/index.tsx`:
 
@@ -2875,11 +2875,11 @@ function DashboardPage() {
 }
 ```
 
-- [ ] **Step 2: Verify page renders**
+- [x] **Step 2: Verify page renders**
 
 Expected: Dashboard page shows all sections with loading skeletons. If backend APIs are available, real data renders.
 
-- [ ] **Step 3: Commit**
+- [x] **Step 3: Commit**
 
 ```bash
 git add -A
@@ -2893,7 +2893,7 @@ git commit -m "feat: add dashboard page with all sections"
 **Files:**
 - Create: `src/routes/agents.tsx`, `src/routes/skills.tsx`, `src/routes/workflows.tsx`, `src/routes/logs.tsx`, `src/routes/security.tsx`, `src/routes/settings.tsx`
 
-- [ ] **Step 1: Create placeholder page template**
+- [x] **Step 1: Create placeholder page template**
 
 Create `src/routes/agents.tsx`:
 
@@ -2919,7 +2919,7 @@ function AgentsPage() {
 }
 ```
 
-- [ ] **Step 2: Create remaining placeholder pages**
+- [x] **Step 2: Create remaining placeholder pages**
 
 Create `src/routes/skills.tsx`:
 
@@ -3028,7 +3028,7 @@ function SettingsPage() {
 }
 ```
 
-- [ ] **Step 3: Regenerate route tree**
+- [x] **Step 3: Regenerate route tree**
 
 ```bash
 npx @tanstack/router-cli generate
@@ -3036,11 +3036,11 @@ npx @tanstack/router-cli generate
 
 Or restart dev server to auto-generate.
 
-- [ ] **Step 4: Verify all routes work**
+- [x] **Step 4: Verify all routes work**
 
 Expected: All routes (`/agents`, `/skills`, `/workflows`, `/logs`, `/security`, `/settings`) render without errors.
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 git add -A
@@ -3054,7 +3054,7 @@ git commit -m "feat: add placeholder pages for all routes"
 **Files:**
 - Create: `server.js` (new version with API routes)
 
-- [ ] **Step 1: Create extended API gateway**
+- [x] **Step 1: Create extended API gateway**
 
 Create `server.js`:
 
@@ -3341,7 +3341,7 @@ server.listen(PORT, '127.0.0.1', () => {
 })
 ```
 
-- [ ] **Step 2: Update package.json with build and serve scripts**
+- [x] **Step 2: Update package.json with build and serve scripts**
 
 Edit `package.json`:
 
@@ -3361,7 +3361,7 @@ Edit `package.json`:
 }
 ```
 
-- [ ] **Step 3: Test API endpoints**
+- [x] **Step 3: Test API endpoints**
 
 ```bash
 npm run build
@@ -3380,7 +3380,7 @@ curl http://127.0.0.1:7777/api/security
 
 Expected: All endpoints return JSON data.
 
-- [ ] **Step 4: Commit**
+- [x] **Step 4: Commit**
 
 ```bash
 git add -A
@@ -3394,7 +3394,7 @@ git commit -m "feat: extend server.js as api gateway with mock data endpoints"
 **Files:**
 - All
 
-- [ ] **Step 1: Build project**
+- [x] **Step 1: Build project**
 
 ```bash
 npm run build
@@ -3402,7 +3402,7 @@ npm run build
 
 Expected: Build succeeds, `dist/` directory created with `index.html`, `assets/`, etc.
 
-- [ ] **Step 2: Run all tests**
+- [x] **Step 2: Run all tests**
 
 ```bash
 npm run test:run
@@ -3410,7 +3410,7 @@ npm run test:run
 
 Expected: All tests pass.
 
-- [ ] **Step 3: Run type check**
+- [x] **Step 3: Run type check**
 
 ```bash
 npx tsc --noEmit
@@ -3418,7 +3418,7 @@ npx tsc --noEmit
 
 Expected: No type errors.
 
-- [ ] **Step 4: Start server and verify**
+- [x] **Step 4: Start server and verify**
 
 ```bash
 npm run serve
@@ -3433,7 +3433,7 @@ Expected:
 - Search box responds to ⌘K
 - All data loads from API
 
-- [ ] **Step 5: Final commit**
+- [x] **Step 5: Final commit**
 
 ```bash
 git add -A

@@ -1,4 +1,4 @@
-import { DashboardStats } from '@/types'
+import type { DashboardStats } from '@/types'
 import { formatCurrency } from '@/lib/formatters'
 import { StatsCard } from './StatsCard'
 

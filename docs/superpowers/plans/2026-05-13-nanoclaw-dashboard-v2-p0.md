@@ -1517,7 +1517,7 @@ git commit -m "feat: add topbar with search and keyboard shortcut"
 - Create: `src/components/dashboard/StatsCard.tsx`
 - Create: `src/components/dashboard/StatsGrid.tsx`
 
-- [ ] **Step 1: Create StatsCard**
+- [x] **Step 1: Create StatsCard**
 
 Create `src/components/dashboard/StatsCard.tsx`:
 
@@ -1614,7 +1614,7 @@ export function StatsCard({
 }
 ```
 
-- [ ] **Step 2: Create StatsGrid**
+- [x] **Step 2: Create StatsGrid**
 
 Create `src/components/dashboard/StatsGrid.tsx`:
 
@@ -1692,13 +1692,13 @@ import { formatCurrency } from '@/lib/formatters'
 import { StatsCard } from './StatsCard'
 ```
 
-- [ ] **Step 3: Verify components render**
+- [x] **Step 3: Verify components render**
 
 Temporarily test by updating DashboardPage to show StatsGrid with mock data.
 
 Expected: 4 stat cards render with correct styling.
 
-- [ ] **Step 4: Commit**
+- [x] **Step 4: Commit**
 
 ```bash
 git add -A
@@ -1713,7 +1713,7 @@ git commit -m "feat: add stats card and stats grid components"
 - Create: `src/components/dashboard/AgentRow.tsx`
 - Create: `src/components/dashboard/AgentList.tsx`
 
-- [ ] **Step 1: Create AgentRow**
+- [x] **Step 1: Create AgentRow**
 
 Create `src/components/dashboard/AgentRow.tsx`:
 
@@ -1763,7 +1763,7 @@ export function AgentRow({ agent }: AgentRowProps) {
 }
 ```
 
-- [ ] **Step 2: Create AgentList**
+- [x] **Step 2: Create AgentList**
 
 Create `src/components/dashboard/AgentList.tsx`:
 
@@ -1809,11 +1809,11 @@ export function AgentList({ agents, isLoading }: AgentListProps) {
 }
 ```
 
-- [ ] **Step 3: Verify**
+- [x] **Step 3: Verify**
 
 Expected: Agent list renders with avatar, name, model, status badge.
 
-- [ ] **Step 4: Commit**
+- [x] **Step 4: Commit**
 
 ```bash
 git add -A
@@ -1828,7 +1828,7 @@ git commit -m "feat: add agent row and agent list components"
 - Create: `src/components/dashboard/WorkflowStatus.tsx`
 - Create: `src/components/dashboard/WorkflowRow.tsx`
 
-- [ ] **Step 1: Create WorkflowRow**
+- [x] **Step 1: Create WorkflowRow**
 
 Create `src/components/dashboard/WorkflowRow.tsx`:
 
@@ -1887,7 +1887,7 @@ export function WorkflowRow({ workflow }: WorkflowRowProps) {
 }
 ```
 
-- [ ] **Step 2: Create WorkflowStatus panel**
+- [x] **Step 2: Create WorkflowStatus panel**
 
 Create `src/components/dashboard/WorkflowStatus.tsx`:
 
@@ -1973,11 +1973,11 @@ function CountCard({
 }
 ```
 
-- [ ] **Step 3: Verify**
+- [x] **Step 3: Verify**
 
 Expected: Workflow status panel renders with counts and list.
 
-- [ ] **Step 4: Commit**
+- [x] **Step 4: Commit**
 
 ```bash
 git add -A
@@ -1992,7 +1992,7 @@ git commit -m "feat: add workflow status and workflow row components"
 - Create: `src/components/dashboard/LogRow.tsx`
 - Create: `src/components/dashboard/LogList.tsx`
 
-- [ ] **Step 1: Create LogRow**
+- [x] **Step 1: Create LogRow**
 
 Create `src/components/dashboard/LogRow.tsx`:
 
@@ -2029,7 +2029,7 @@ export function LogRow({ log }: LogRowProps) {
 }
 ```
 
-- [ ] **Step 2: Create LogList**
+- [x] **Step 2: Create LogList**
 
 Create `src/components/dashboard/LogList.tsx`:
 
@@ -2074,11 +2074,11 @@ export function LogList({ logs, isLoading }: LogListProps) {
 }
 ```
 
-- [ ] **Step 3: Verify**
+- [x] **Step 3: Verify**
 
 Expected: Log list renders with time, type badge, message.
 
-- [ ] **Step 4: Commit**
+- [x] **Step 4: Commit**
 
 ```bash
 git add -A
@@ -2093,7 +2093,7 @@ git commit -m "feat: add log row and log list components"
 - Create: `src/components/dashboard/SecurityCard.tsx`
 - Create: `src/components/dashboard/SecurityGrid.tsx`
 
-- [ ] **Step 1: Create SecurityCard**
+- [x] **Step 1: Create SecurityCard**
 
 Create `src/components/dashboard/SecurityCard.tsx`:
 
@@ -2122,7 +2122,7 @@ export function SecurityCard({ icon, title, description, status, statusColor }: 
 }
 ```
 
-- [ ] **Step 2: Create SecurityGrid**
+- [x] **Step 2: Create SecurityGrid**
 
 Create `src/components/dashboard/SecurityGrid.tsx`:
 
@@ -2198,11 +2198,11 @@ export function SecurityGrid({ security, isLoading }: SecurityGridProps) {
 }
 ```
 
-- [ ] **Step 3: Verify**
+- [x] **Step 3: Verify**
 
 Expected: Security grid renders with 3 cards and overall status.
 
-- [ ] **Step 4: Commit**
+- [x] **Step 4: Commit**
 
 ```bash
 git add -A
@@ -2216,7 +2216,7 @@ git commit -m "feat: add security card and security grid components"
 **Files:**
 - Create: `src/components/dashboard/MiniChart.tsx`
 
-- [ ] **Step 1: Create MiniChart**
+- [x] **Step 1: Create MiniChart**
 
 Create `src/components/dashboard/MiniChart.tsx`:
 
@@ -2247,7 +2247,7 @@ export function MiniChart({ data, color = 'var(--color-accent)' }: MiniChartProp
 }
 ```
 
-- [ ] **Step 2: Update StatsCard to use MiniChart**
+- [x] **Step 2: Update StatsCard to use MiniChart**
 
 Edit `src/components/dashboard/StatsCard.tsx` — replace inline chart with MiniChart import:
 
@@ -2261,11 +2261,11 @@ Replace the inline chart div with:
 {chart && <MiniChart data={chart} />}
 ```
 
-- [ ] **Step 3: Verify**
+- [x] **Step 3: Verify**
 
 Expected: MiniChart renders as 12 vertical bars with varying heights.
 
-- [ ] **Step 4: Commit**
+- [x] **Step 4: Commit**
 
 ```bash
 git add -A

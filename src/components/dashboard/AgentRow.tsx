@@ -1,11 +1,11 @@
 import type { Agent } from '@/types'
 
 const avatarColors: Record<string, string> = {
-  '🐾': 'rgba(255, 140, 26, 0.2)',
-  '⚡': 'rgba(168, 85, 247, 0.15)',
-  '🔍': 'rgba(59, 130, 246, 0.15)',
-  '📋': 'rgba(34, 197, 94, 0.15)',
-  '📊': 'rgba(161, 161, 161, 0.15)',
+  '🐾': 'rgba(255, 140, 26, 0.35)',
+  '⚡': 'rgba(168, 85, 247, 0.3)',
+  '🔍': 'rgba(59, 130, 246, 0.3)',
+  '📋': 'rgba(34, 197, 94, 0.3)',
+  '📊': 'rgba(161, 161, 161, 0.3)',
 }
 
 interface AgentRowProps {
@@ -32,8 +32,8 @@ export function AgentRow({ agent }: AgentRowProps) {
       <span
         className={`text-[11px] px-2 py-0.5 rounded-[var(--radius-badge)] font-medium flex-shrink-0 ${
           agent.status === 'running'
-            ? 'bg-green/15 text-green'
-            : 'bg-red/15 text-red'
+            ? 'bg-green/25 text-green'
+            : 'bg-red/25 text-red'
         }`}
       >
         {agent.status === 'running' ? '运行中' : '已暂停'}

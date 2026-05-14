@@ -2,10 +2,10 @@ import type { Workflow } from '@/types'
 import { formatRelativeTime } from '@/lib/formatters'
 
 const statusConfig: Record<string, { bg: string; text: string; label: string }> = {
-  queued: { bg: 'rgba(161, 161, 161, 0.1)', text: 'var(--color-text3)', label: '排队中' },
-  running: { bg: 'rgba(255, 140, 26, 0.15)', text: 'var(--color-accent)', label: '执行中' },
-  completed: { bg: 'rgba(34, 197, 94, 0.1)', text: 'var(--color-green)', label: '成功' },
-  failed: { bg: 'rgba(239, 68, 68, 0.1)', text: 'var(--color-red)', label: '失败' },
+  queued: { bg: 'rgba(161, 161, 161, 0.25)', text: 'var(--color-text3)', label: '排队中' },
+  running: { bg: 'rgba(255, 140, 26, 0.3)', text: 'var(--color-accent)', label: '执行中' },
+  completed: { bg: 'rgba(34, 197, 94, 0.25)', text: 'var(--color-green)', label: '成功' },
+  failed: { bg: 'rgba(239, 68, 68, 0.25)', text: 'var(--color-red)', label: '失败' },
 }
 
 const iconConfig: Record<string, string> = {

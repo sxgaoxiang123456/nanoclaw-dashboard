@@ -7,6 +7,9 @@ interface LogListProps {
   isLoading: boolean
 }
 
+// TODO(P1-UX): Add empty state when logs array is empty.
+// TODO(P2-UX): Add log type filter buttons (exec/create/config/error).
+
 export function LogList({ logs, isLoading }: LogListProps) {
   return (
     <div

@@ -7,6 +7,8 @@ interface WorkflowStatusProps {
   isLoading: boolean
 }
 
+// TODO(P1-UX): Add empty state when workflows array is empty.
+
 export function WorkflowStatus({ workflows, isLoading }: WorkflowStatusProps) {
   const counts = {
     queued: workflows?.filter((w) => w.status === 'queued').length ?? 0,

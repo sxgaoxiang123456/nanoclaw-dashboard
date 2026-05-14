@@ -10,6 +10,10 @@ const NANOCLAW_ROOT = resolve(process.env.NANOCLAW_ROOT || '../nanoclaw-v2')
 const PORT = parseInt(process.env.PORT || '7777', 10)
 const HTML_PATH = resolve(__dirname, 'dist', 'index.html')
 const CHAT_TIMEOUT_MS = 120_000
+const MAX_CHAT_MESSAGE_LENGTH = 2000
+const ALLOWED_ORIGINS = process.env.ALLOWED_ORIGINS
+  ? process.env.ALLOWED_ORIGINS.split(',')
+  : ['http://localhost:5173', 'http://127.0.0.1:5173']
 
 // Check NanoClaw root
 const hasNanoClaw = existsSync(resolve(NANOCLAW_ROOT, 'package.json'))
@@ -20,6 +24,8 @@ if (!hasNanoClaw) {
 }
 
 // Cache for dashboard stats (TTL: 10s)
+// TODO(P1-SEC): Add rate limiting middleware for all API endpoints.
+// TODO(P1-SEC): Add CSRF token validation for POST /api/chat.
 let statsCache = null
 let statsCacheTime = 0
 const STATS_CACHE_TTL = 10_000
@@ -182,8 +188,25 @@ function chatSpawn(msg) {
   })
 }
 
+function sanitizeChatInput(input) {
+  // Remove potentially dangerous HTML/script tags
+  return input
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#x27;')
+}
+
+function isValidOrigin(origin) {
+  if (!origin) return true
+  return ALLOWED_ORIGINS.includes(origin)
+}
+
 const server = createServer(async (req, res) => {
-  res.setHeader('Access-Control-Allow-Origin', '*')
+  const origin = req.headers.origin || ''
+  if (isValidOrigin(origin)) {
+    res.setHeader('Access-Control-Allow-Origin', origin || ALLOWED_ORIGINS[0])
+  }
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS')
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type')
 
@@ -281,8 +304,14 @@ const server = createServer(async (req, res) => {
           res.end(JSON.stringify({ error: 'message is required' }))
           return
         }
+        if (message.length > MAX_CHAT_MESSAGE_LENGTH) {
+          res.writeHead(400, { 'Content-Type': 'application/json' })
+          res.end(JSON.stringify({ error: `message exceeds max length of ${MAX_CHAT_MESSAGE_LENGTH}` }))
+          return
+        }
 
-        const result = await chatSpawn(message)
+        const sanitizedMessage = sanitizeChatInput(message)
+        const result = await chatSpawn(sanitizedMessage)
         res.writeHead(200, { 'Content-Type': 'application/json' })
         res.end(JSON.stringify(result))
       } catch (err) {

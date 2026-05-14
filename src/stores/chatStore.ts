@@ -1,6 +1,9 @@
 import { create } from 'zustand'
 import type { ChatMessage } from '@/types'
 
+// TODO(P2-ARCH): Extract state transitions into a reducer function for better testability.
+// TODO(P1-UX): Consider persisting chat messages to localStorage or sessionStorage.
+
 export const ChatState = {
   Closed: 'closed',
   Open: 'open',

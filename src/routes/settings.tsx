@@ -4,6 +4,7 @@ export const Route = createFileRoute('/settings')({
   component: SettingsPage,
 })
 
+// TODO(P1): Implement settings page - theme, notifications, API keys, budget limits
 function SettingsPage() {
   return (
     <div className="flex flex-col items-center justify-center min-h-[400px] text-center">

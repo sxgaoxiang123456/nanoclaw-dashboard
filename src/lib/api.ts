@@ -1,6 +1,11 @@
 import type { Agent, DashboardStats, LogEntry, SecurityStatus, Workflow } from '@/types'
 import { API_BASE_URL, CHAT_TIMEOUT_MS } from './constants'
 
+// TODO(P1-ARCH): ApiResponse<T> is defined in types/index.ts but never used here.
+// Refactor all API functions to return ApiResponse<T> with standardized error codes.
+// TODO(P1-SEC): Add request/response interceptors, automatic retry, and request cancellation.
+// TODO(P1-SEC): Include CSRF token in request headers for state-changing operations.
+
 class ApiError extends Error {
   status: number
   constructor(status: number, message: string) {

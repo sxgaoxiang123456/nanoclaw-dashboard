@@ -7,6 +7,9 @@ interface AgentListProps {
   isLoading: boolean
 }
 
+// TODO(P1-ARCH): runningCount is also computed in TopBar.tsx. Deduplicate via a shared selector.
+// TODO(P1-UX): Add empty state when agents array is empty.
+
 export function AgentList({ agents, isLoading }: AgentListProps) {
   const runningCount = agents?.filter((a) => a.status === 'running').length ?? 0
 

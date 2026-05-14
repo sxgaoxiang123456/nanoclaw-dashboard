@@ -3,6 +3,8 @@ import { Sidebar } from '@/components/layout/Sidebar'
 import { TopBar } from '@/components/layout/TopBar'
 import { ChatPanel } from '@/components/chat/ChatPanel'
 
+// TODO(P1-ARCH): Add route guards via beforeLoad to check authentication/authorization.
+// TODO(P1-UX): Add responsive mobile layout - collapse sidebar into hamburger menu on small screens.
 export const Route = createRootRoute({
   component: RootComponent,
 })

@@ -5,6 +5,7 @@ export const Route = createFileRoute('/skills')({
   component: SkillsPage,
 })
 
+// TODO(P1): Implement Skills marketplace - browse, install, configure, uninstall
 function SkillsPage() {
   const { data: stats } = useDashboardStats()
 

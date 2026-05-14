@@ -8,6 +8,8 @@ const avatarColors: Record<string, string> = {
   '📊': 'rgba(161, 161, 161, 0.3)',
 }
 
+// TODO(P2-UX): Add click-to-expand detail panel and action buttons (start/pause/delete).
+
 interface AgentRowProps {
   agent: Agent
 }

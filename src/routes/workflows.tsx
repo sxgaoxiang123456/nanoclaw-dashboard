@@ -4,6 +4,7 @@ export const Route = createFileRoute('/workflows')({
   component: WorkflowsPage,
 })
 
+// TODO(P1): Implement workflow orchestration - DAG editor, trigger config, execution history
 function WorkflowsPage() {
   return (
     <div className="flex flex-col items-center justify-center min-h-[400px] text-center">

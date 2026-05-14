@@ -138,6 +138,30 @@ describe('api gateway', () => {
     expect(data).toHaveProperty('error')
   })
 
+  it('POST /api/chat with message exceeding max length returns 400', async () => {
+    const longMessage = 'a'.repeat(3000)
+    const res = await fetch(`${baseUrl}/api/chat`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ message: longMessage }),
+    })
+    expect(res.status).toBe(400)
+    const data = await res.json()
+    expect(data.error).toContain('exceeds max length')
+  })
+
+  it('POST /api/chat sanitizes HTML in message', async () => {
+    const res = await fetch(`${baseUrl}/api/chat`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ message: '<script>alert(1)</script>' }),
+    })
+    expect(res.status).toBe(200)
+    const data = await res.json()
+    expect(data).toHaveProperty('reply')
+    expect(data.reply).not.toContain('<script>')
+  }, 15000)
+
   it('serves static index.html for root path', async () => {
     const res = await fetch(`${baseUrl}/`)
     expect(res.status).toBe(200)
@@ -145,8 +169,10 @@ describe('api gateway', () => {
     expect(html).toContain('<html')
   })
 
-  it('CORS headers are present', async () => {
+  it('CORS headers are present with restricted origin', async () => {
     const res = await fetch(`${baseUrl}/api/stats`)
-    expect(res.headers.get('access-control-allow-origin')).toBe('*')
+    const origin = res.headers.get('access-control-allow-origin')
+    expect(origin).toBeTruthy()
+    expect(origin).not.toBe('*')
   })
 })

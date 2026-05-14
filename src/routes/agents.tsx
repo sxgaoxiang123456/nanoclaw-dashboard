@@ -5,6 +5,7 @@ export const Route = createFileRoute('/agents')({
   component: AgentsPage,
 })
 
+// TODO(P1): Implement full Agent CRUD - list, create, edit, delete, start/stop
 function AgentsPage() {
   const { data: agents } = useAgents()
 

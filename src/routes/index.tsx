@@ -13,6 +13,8 @@ export const Route = createFileRoute('/')({
   component: DashboardPage,
 })
 
+// TODO(P1-ARCH): Add error boundary around each dashboard section.
+// TODO(P1-UX): Pass error states from useQuery hooks down to components for error UI.
 function DashboardPage() {
   const { data: stats, isLoading: statsLoading } = useDashboardStats()
   const { data: agents, isLoading: agentsLoading } = useAgents()

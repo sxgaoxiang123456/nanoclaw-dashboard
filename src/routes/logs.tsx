@@ -4,6 +4,7 @@ export const Route = createFileRoute('/logs')({
   component: LogsPage,
 })
 
+// TODO(P1): Implement full logs page - real-time streaming, filtering, search, export
 function LogsPage() {
   return (
     <div className="flex flex-col items-center justify-center min-h-[400px] text-center">

@@ -1,3 +1,5 @@
+// TODO(P2-UX): Add tooltip on hover showing exact value for each bar.
+
 interface MiniChartProps {
   data: number[]
   color?: string

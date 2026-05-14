@@ -1,33 +1,6 @@
 import { useRef, useState, useCallback, useEffect } from 'react'
 import { useChat } from '@/hooks/useChat'
-import type { ChatMessage } from '@/types'
-
-function ChatMessageBubble({ msg }: { msg: ChatMessage }) {
-  const isUser = msg.role === 'user'
-  const isLoading = msg.status === 'loading'
-
-  return (
-    <div
-      className={
-        isUser
-          ? 'self-end max-w-[85%]'
-          : 'self-start max-w-[85%]'
-      }
-    >
-      <div
-        className={
-          isUser
-            ? 'px-3.5 py-2.5 rounded-xl rounded-br text-[13px] leading-relaxed break-words bg-accent text-white'
-            : isLoading
-              ? 'px-3.5 py-2.5 rounded-xl rounded-bl text-[13px] leading-relaxed break-words bg-card-hover text-text3 italic'
-              : 'px-3.5 py-2.5 rounded-xl rounded-bl text-[13px] leading-relaxed break-words bg-card-hover text-text'
-        }
-      >
-        {msg.content}
-      </div>
-    </div>
-  )
-}
+import { ChatBubble } from './ChatBubble'
 
 export function ChatPanel() {
   const {
@@ -124,7 +97,7 @@ export function ChatPanel() {
         {/* Messages */}
         <div className="flex-1 overflow-y-auto p-4 flex flex-col gap-3">
           {messages.map((msg) => (
-            <ChatMessageBubble key={msg.id} msg={msg} />
+            <ChatBubble key={msg.id} msg={msg} />
           ))}
 
           {/* Error Banner */}

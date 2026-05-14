@@ -1015,7 +1015,7 @@ git commit -m "feat: add date formatting utilities"
 - Create: `src/lib/api.ts`
 - Create: `src/lib/constants.ts`
 
-- [ ] **Step 1: Create constants**
+- [x] **Step 1: Create constants**
 
 Create `src/lib/constants.ts`:
 
@@ -1027,7 +1027,7 @@ export const AGENT_REFRESH_INTERVAL = 10_000
 export const LOG_REFRESH_INTERVAL = 5_000
 ```
 
-- [ ] **Step 2: Create API client**
+- [x] **Step 2: Create API client**
 
 Create `src/lib/api.ts`:
 
@@ -1103,7 +1103,7 @@ export async function sendChatMessage(message: string): Promise<{ reply: string 
 export { ApiError }
 ```
 
-- [ ] **Step 3: Verify types compile**
+- [x] **Step 3: Verify types compile**
 
 ```bash
 npx tsc --noEmit
@@ -1111,7 +1111,7 @@ npx tsc --noEmit
 
 Expected: No type errors.
 
-- [ ] **Step 4: Commit**
+- [x] **Step 4: Commit**
 
 ```bash
 git add -A
@@ -1129,7 +1129,7 @@ git commit -m "feat: add api client with error handling and timeout"
 - Create: `src/hooks/useLogs.ts`
 - Create: `src/hooks/useSecurityStatus.ts`
 
-- [ ] **Step 1: Create useDashboardStats**
+- [x] **Step 1: Create useDashboardStats**
 
 Create `src/hooks/useDashboardStats.ts`:
 
@@ -1147,7 +1147,7 @@ export function useDashboardStats() {
 }
 ```
 
-- [ ] **Step 2: Create useAgents**
+- [x] **Step 2: Create useAgents**
 
 Create `src/hooks/useAgents.ts`:
 
@@ -1166,7 +1166,7 @@ export function useAgents() {
 }
 ```
 
-- [ ] **Step 3: Create useWorkflows**
+- [x] **Step 3: Create useWorkflows**
 
 Create `src/hooks/useWorkflows.ts`:
 
@@ -1185,7 +1185,7 @@ export function useWorkflows() {
 }
 ```
 
-- [ ] **Step 4: Create useLogs**
+- [x] **Step 4: Create useLogs**
 
 Create `src/hooks/useLogs.ts`:
 
@@ -1204,7 +1204,7 @@ export function useLogs() {
 }
 ```
 
-- [ ] **Step 5: Create useSecurityStatus**
+- [x] **Step 5: Create useSecurityStatus**
 
 Create `src/hooks/useSecurityStatus.ts`:
 
@@ -1221,7 +1221,7 @@ export function useSecurityStatus() {
 }
 ```
 
-- [ ] **Step 6: Verify types compile**
+- [x] **Step 6: Verify types compile**
 
 ```bash
 npx tsc --noEmit
@@ -1229,7 +1229,7 @@ npx tsc --noEmit
 
 Expected: No type errors.
 
-- [ ] **Step 7: Commit**
+- [x] **Step 7: Commit**
 
 ```bash
 git add -A
@@ -1243,7 +1243,7 @@ git commit -m "feat: add tanstack query data hooks"
 **Files:**
 - Create: `src/components/layout/Sidebar.tsx`
 
-- [ ] **Step 1: Create Sidebar component**
+- [x] **Step 1: Create Sidebar component**
 
 Create `src/components/layout/Sidebar.tsx`:
 
@@ -1370,7 +1370,7 @@ function QuickAction({ icon, label, collapsed }: { icon: string; label: string; 
 }
 ```
 
-- [ ] **Step 2: Verify Sidebar renders**
+- [x] **Step 2: Verify Sidebar renders**
 
 Temporarily update `src/routes/__root.tsx`:
 
@@ -1396,7 +1396,7 @@ function RootComponent() {
 
 Expected: Sidebar renders with logo, navigation items, platform status.
 
-- [ ] **Step 3: Commit**
+- [x] **Step 3: Commit**
 
 ```bash
 git add -A
@@ -1410,7 +1410,7 @@ git commit -m "feat: add sidebar component with navigation"
 **Files:**
 - Create: `src/components/layout/TopBar.tsx`
 
-- [ ] **Step 1: Create TopBar component**
+- [x] **Step 1: Create TopBar component**
 
 Create `src/components/layout/TopBar.tsx`:
 
@@ -1472,7 +1472,7 @@ function Badge({ dot, text }: { dot: 'green' | 'purple'; text: string }) {
 }
 ```
 
-- [ ] **Step 2: Update root layout**
+- [x] **Step 2: Update root layout**
 
 Edit `src/routes/__root.tsx`:
 
@@ -1502,7 +1502,7 @@ function RootComponent() {
 
 Expected: TopBar renders with search box (⌘K works), badges, avatar.
 
-- [ ] **Step 3: Commit**
+- [x] **Step 3: Commit**
 
 ```bash
 git add -A

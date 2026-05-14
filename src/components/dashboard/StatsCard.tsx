@@ -1,5 +1,6 @@
 import { Skeleton } from '@/components/ui/skeleton'
 import { formatCurrency, formatNumber, formatPercent } from '@/lib/formatters'
+import { MiniChart } from './MiniChart'
 
 interface StatsCardProps {
   title: string
@@ -36,8 +37,6 @@ export function StatsCard({
     green: 'var(--color-green)',
     blue: 'var(--color-blue)',
   }
-
-  const chartMax = chart ? Math.max(...chart) : 0
 
   return (
     <div className="bg-card border border-border rounded-[var(--radius-card)] p-5 shadow-[var(--shadow-card)]">
@@ -82,24 +81,7 @@ export function StatsCard({
             </div>
           )}
 
-          {chart && (
-            <div className="flex items-end gap-[3px] h-9 mt-2">
-              {chart.map((h, i) => {
-                const height = Math.max((h / chartMax) * 36, 4)
-                const isLast = i === chart.length - 1
-                return (
-                  <div
-                    key={i}
-                    className="flex-1 bg-accent rounded-t-sm transition-all duration-300"
-                    style={{
-                      height: `${height}px`,
-                      opacity: isLast ? 1 : 0.4,
-                    }}
-                  />
-                )
-              })}
-            </div>
-          )}
+          {chart && <MiniChart data={chart} />}
         </>
       )}
     </div>

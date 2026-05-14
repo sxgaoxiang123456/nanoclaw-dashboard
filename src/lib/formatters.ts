@@ -65,3 +65,20 @@ export function formatDuration(seconds: number): string {
 
   return `${sign}${result}`
 }
+
+export function formatTime(isoString: string): string {
+  const date = new Date(isoString)
+  return date.toLocaleTimeString('zh-CN', { hour: '2-digit', minute: '2-digit' })
+}
+
+export function formatRelativeTime(isoString: string): string {
+  const now = new Date().getTime()
+  const then = new Date(isoString).getTime()
+  const diffMs = now - then
+
+  if (diffMs < 0) return '未来'
+  if (diffMs < 60_000) return '刚刚'
+  if (diffMs < 3_600_000) return `${Math.floor(diffMs / 60_000)}分钟前`
+  if (diffMs < 86_400_000) return `${Math.floor(diffMs / 3_600_000)}小时前`
+  return `${Math.floor(diffMs / 86_400_000)}天前`
+}

@@ -646,7 +646,7 @@ git commit -m "chore: configure vitest with jsdom and testing-library"
 **Files:**
 - Create: `src/types/index.ts`
 
-- [ ] **Step 1: Create type definitions**
+- [x] **Step 1: Create type definitions**
 
 Create `src/types/index.ts`:
 
@@ -741,7 +741,7 @@ export interface ApiResponse<T> {
 }
 ```
 
-- [ ] **Step 2: Verify types compile**
+- [x] **Step 2: Verify types compile**
 
 ```bash
 npx tsc --noEmit
@@ -749,7 +749,7 @@ npx tsc --noEmit
 
 Expected: No type errors.
 
-- [ ] **Step 3: Commit**
+- [x] **Step 3: Commit**
 
 ```bash
 git add -A
@@ -764,7 +764,7 @@ git commit -m "feat: add typescript type definitions"
 - Create: `src/lib/formatters.ts`
 - Create: `tests/formatters.test.ts`
 
-- [ ] **Step 1: Write the failing test**
+- [x] **Step 1: Write the failing test**
 
 Create `tests/formatters.test.ts`:
 
@@ -839,7 +839,7 @@ describe('formatCompactNumber', () => {
 })
 ```
 
-- [ ] **Step 2: Run test to verify it fails**
+- [x] **Step 2: Run test to verify it fails**
 
 ```bash
 npm run test:run tests/formatters.test.ts
@@ -847,7 +847,7 @@ npm run test:run tests/formatters.test.ts
 
 Expected: All tests FAIL with "formatNumber is not defined" or import errors.
 
-- [ ] **Step 3: Implement formatters**
+- [x] **Step 3: Implement formatters**
 
 Create `src/lib/formatters.ts`:
 
@@ -898,7 +898,7 @@ export function formatCompactNumber(value: number): string {
 }
 ```
 
-- [ ] **Step 4: Run tests to verify they pass**
+- [x] **Step 4: Run tests to verify they pass**
 
 ```bash
 npm run test:run tests/formatters.test.ts
@@ -906,7 +906,7 @@ npm run test:run tests/formatters.test.ts
 
 Expected: All 12 tests pass.
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 git add -A
@@ -921,7 +921,7 @@ git commit -m "feat: add number formatting utilities with comprehensive tests"
 - Modify: `src/lib/formatters.ts`
 - Modify: `tests/formatters.test.ts`
 
-- [ ] **Step 1: Write the failing test**
+- [x] **Step 1: Write the failing test**
 
 Append to `tests/formatters.test.ts`:
 
@@ -954,7 +954,7 @@ describe('formatRelativeTime', () => {
 })
 ```
 
-- [ ] **Step 2: Run test to verify it fails**
+- [x] **Step 2: Run test to verify it fails**
 
 ```bash
 npm run test:run tests/formatters.test.ts
@@ -962,7 +962,7 @@ npm run test:run tests/formatters.test.ts
 
 Expected: New tests FAIL.
 
-- [ ] **Step 3: Implement date formatters**
+- [x] **Step 3: Implement date formatters**
 
 Append to `src/lib/formatters.ts`:
 
@@ -992,7 +992,7 @@ export function formatRelativeTime(value: string | Date): string {
 }
 ```
 
-- [ ] **Step 4: Run tests to verify they pass**
+- [x] **Step 4: Run tests to verify they pass**
 
 ```bash
 npm run test:run tests/formatters.test.ts
@@ -1000,7 +1000,7 @@ npm run test:run tests/formatters.test.ts
 
 Expected: All tests pass.
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 git add -A

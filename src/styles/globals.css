@@ -14,7 +14,7 @@
   --color-text2: #a1a1a1;
   --color-text3: #737373;
   --color-accent: #ff8c1a;
-  --color-accent-dim: rgba(255, 140, 26, 0.15);
+  --color-accent-dim: rgba(255, 140, 26, 0.25);
   --color-green: #22c55e;
   --color-red: #ef4444;
   --color-purple: #a855f7;
@@ -71,7 +71,7 @@ body {
   --color-border: var(--border);
   --color-destructive: var(--destructive);
   --color-accent-foreground: var(--accent-foreground);
-  --color-accent: var(--accent);
+  --color-accent: #ff8c1a;
   --color-muted-foreground: var(--muted-foreground);
   --color-muted: var(--muted);
   --color-secondary-foreground: var(--secondary-foreground);

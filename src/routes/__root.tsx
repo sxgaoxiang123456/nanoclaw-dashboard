@@ -1,6 +1,7 @@
 import { createRootRoute, Outlet } from '@tanstack/react-router'
 import { Sidebar } from '@/components/layout/Sidebar'
 import { TopBar } from '@/components/layout/TopBar'
+import { ChatPanel } from '@/components/chat/ChatPanel'
 
 export const Route = createRootRoute({
   component: RootComponent,
@@ -16,6 +17,7 @@ function RootComponent() {
           <Outlet />
         </main>
       </div>
+      <ChatPanel />
     </div>
   )
 }

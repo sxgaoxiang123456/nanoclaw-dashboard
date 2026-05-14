@@ -9,8 +9,6 @@ import { AgentList } from '@/components/dashboard/AgentList'
 import { WorkflowStatus } from '@/components/dashboard/WorkflowStatus'
 import { LogList } from '@/components/dashboard/LogList'
 import { SecurityGrid } from '@/components/dashboard/SecurityGrid'
-import { ChatPanel } from '@/components/chat/ChatPanel'
-
 export const Route = createFileRoute('/')({
   component: DashboardPage,
 })
@@ -36,7 +34,6 @@ function DashboardPage() {
         <SecurityGrid security={security} isLoading={securityLoading} />
       </div>
 
-      <ChatPanel />
     </div>
   )
 }

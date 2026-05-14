@@ -92,7 +92,7 @@ nanoclaw-dashboard-v2/
 - Create: `package.json`, `tsconfig.json`, `index.html`, `vite.config.ts`
 - Create: `src/main.tsx`
 
-- [ ] **Step 1: Run Vite scaffold command**
+- [x] **Step 1: Run Vite scaffold command**
 
 ```bash
 cd /Volumes/Gaoxiang-Data/02_code/nanoclaw-fork/nanoclaw-dashboard-v2
@@ -101,7 +101,7 @@ npm create vite@latest . -- --template react-ts
 
 Expected: Project scaffolded with `src/App.tsx`, `src/main.tsx`, `index.html`, `vite.config.ts`, `tsconfig.json`, `package.json`.
 
-- [ ] **Step 2: Install dependencies**
+- [x] **Step 2: Install dependencies**
 
 ```bash
 npm install
@@ -109,7 +109,7 @@ npm install
 
 Expected: `node_modules/` created, no errors.
 
-- [ ] **Step 3: Verify dev server starts**
+- [x] **Step 3: Verify dev server starts**
 
 ```bash
 npm run dev
@@ -117,7 +117,7 @@ npm run dev
 
 Expected: Server starts on `http://localhost:5173/`, default Vite + React page renders.
 
-- [ ] **Step 4: Commit**
+- [x] **Step 4: Commit**
 
 ```bash
 git add -A
@@ -133,13 +133,13 @@ git commit -m "chore: initialize vite + react + typescript project"
 - Modify: `index.html` (add font preload if needed)
 - Modify: `vite.config.ts`
 
-- [ ] **Step 1: Install Tailwind CSS v4**
+- [x] **Step 1: Install Tailwind CSS v4**
 
 ```bash
 npm install -D tailwindcss@4 @tailwindcss/vite
 ```
 
-- [ ] **Step 2: Configure Vite plugin**
+- [x] **Step 2: Configure Vite plugin**
 
 Edit `vite.config.ts`:
 
@@ -153,7 +153,7 @@ export default defineConfig({
 })
 ```
 
-- [ ] **Step 3: Create globals.css with design system variables**
+- [x] **Step 3: Create globals.css with design system variables**
 
 Create `src/styles/globals.css`:
 
@@ -208,7 +208,7 @@ body {
 }
 ```
 
-- [ ] **Step 4: Import globals.css in main.tsx**
+- [x] **Step 4: Import globals.css in main.tsx**
 
 Edit `src/main.tsx` to add:
 
@@ -216,7 +216,7 @@ Edit `src/main.tsx` to add:
 import './styles/globals.css'
 ```
 
-- [ ] **Step 5: Verify Tailwind works**
+- [x] **Step 5: Verify Tailwind works**
 
 Edit `src/App.tsx` temporarily:
 
@@ -228,7 +228,7 @@ export default function App() {
 
 Expected: Page shows orange text on dark background.
 
-- [ ] **Step 6: Commit**
+- [x] **Step 6: Commit**
 
 ```bash
 git add -A
@@ -244,7 +244,7 @@ git commit -m "feat: configure tailwind css v4 with design system"
 - Create: `src/lib/utils.ts`
 - Create: `src/components/ui/*.tsx`
 
-- [ ] **Step 1: Initialize shadcn/ui**
+- [x] **Step 1: Initialize shadcn/ui**
 
 ```bash
 npx shadcn@latest init --yes --template next --base-color zinc
@@ -255,7 +255,7 @@ Note: Use `next` template as base for React 19 compatibility. When prompted:
 - Base color: zinc
 - CSS variables: yes
 
-- [ ] **Step 2: Install required shadcn/ui components**
+- [x] **Step 2: Install required shadcn/ui components**
 
 ```bash
 npx shadcn@latest add button input badge card scroll-area skeleton avatar
@@ -263,7 +263,7 @@ npx shadcn@latest add button input badge card scroll-area skeleton avatar
 
 Expected: Components created in `src/components/ui/`.
 
-- [ ] **Step 3: Override shadcn/ui styles for dark theme**
+- [x] **Step 3: Override shadcn/ui styles for dark theme**
 
 Edit `src/styles/globals.css`, append after `@theme` block:
 
@@ -293,7 +293,7 @@ Edit `src/styles/globals.css`, append after `@theme` block:
 }
 ```
 
-- [ ] **Step 4: Verify Button component renders correctly**
+- [x] **Step 4: Verify Button component renders correctly**
 
 Temporarily test in App.tsx:
 
@@ -311,7 +311,7 @@ export default function App() {
 
 Expected: Button renders with dark theme styling.
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 git add -A
@@ -328,14 +328,14 @@ git commit -m "feat: configure shadcn/ui with dark theme overrides"
 - Create: `src/routes/__root.tsx`, `src/routes/index.tsx`
 - Create: `tsconfig.json` (update paths)
 
-- [ ] **Step 1: Install TanStack Router**
+- [x] **Step 1: Install TanStack Router**
 
 ```bash
 npm install @tanstack/react-router
 npm install -D @tanstack/router-plugin @tanstack/router-devtools
 ```
 
-- [ ] **Step 2: Configure router plugin in Vite**
+- [x] **Step 2: Configure router plugin in Vite**
 
 Edit `vite.config.ts`:
 
@@ -355,7 +355,7 @@ export default defineConfig({
 })
 ```
 
-- [ ] **Step 3: Create root layout**
+- [x] **Step 3: Create root layout**
 
 Create `src/routes/__root.tsx`:
 
@@ -375,7 +375,7 @@ function RootComponent() {
 }
 ```
 
-- [ ] **Step 4: Create dashboard route**
+- [x] **Step 4: Create dashboard route**
 
 Create `src/routes/index.tsx`:
 
@@ -391,7 +391,7 @@ function DashboardPage() {
 }
 ```
 
-- [ ] **Step 5: Update main.tsx with RouterProvider**
+- [x] **Step 5: Update main.tsx with RouterProvider**
 
 Edit `src/main.tsx`:
 
@@ -420,7 +420,7 @@ createRoot(rootElement).render(
 )
 ```
 
-- [ ] **Step 6: Generate route tree**
+- [x] **Step 6: Generate route tree**
 
 ```bash
 npm run dev
@@ -432,11 +432,11 @@ The router plugin auto-generates `src/routeTree.gen.ts`. If it doesn't appear, r
 npx @tanstack/router-cli generate
 ```
 
-- [ ] **Step 7: Verify routing works**
+- [x] **Step 7: Verify routing works**
 
 Expected: `http://localhost:5173/` shows "Dashboard Page".
 
-- [ ] **Step 8: Commit**
+- [x] **Step 8: Commit**
 
 ```bash
 git add -A
@@ -451,13 +451,13 @@ git commit -m "feat: configure tanstack router with file-based routing"
 - Modify: `src/main.tsx`
 - Create: `src/stores/sidebarStore.ts`, `src/stores/chatStore.ts`, `src/stores/themeStore.ts`
 
-- [ ] **Step 1: Install dependencies**
+- [x] **Step 1: Install dependencies**
 
 ```bash
 npm install @tanstack/react-query zustand
 ```
 
-- [ ] **Step 2: Configure QueryClientProvider**
+- [x] **Step 2: Configure QueryClientProvider**
 
 Edit `src/main.tsx`:
 
@@ -497,7 +497,7 @@ createRoot(rootElement).render(
 )
 ```
 
-- [ ] **Step 3: Create sidebar store**
+- [x] **Step 3: Create sidebar store**
 
 Create `src/stores/sidebarStore.ts`:
 
@@ -515,7 +515,7 @@ export const useSidebarStore = create<SidebarState>((set) => ({
 }))
 ```
 
-- [ ] **Step 4: Verify QueryClient and Zustand work**
+- [x] **Step 4: Verify QueryClient and Zustand work**
 
 Temporarily test in `src/routes/index.tsx`:
 
@@ -540,7 +540,7 @@ function DashboardPage() {
 
 Expected: Clicking "Toggle" switches text between "open" and "collapsed".
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 git add -A
@@ -556,13 +556,13 @@ git commit -m "feat: configure tanstack query and zustand stores"
 - Create: `tests/setup.ts`
 - Modify: `package.json` (scripts)
 
-- [ ] **Step 1: Install Vitest and testing libraries**
+- [x] **Step 1: Install Vitest and testing libraries**
 
 ```bash
 npm install -D vitest @testing-library/react @testing-library/jest-dom jsdom
 ```
 
-- [ ] **Step 2: Create Vitest config**
+- [x] **Step 2: Create Vitest config**
 
 Create `vitest.config.ts`:
 
@@ -586,7 +586,7 @@ export default defineConfig({
 })
 ```
 
-- [ ] **Step 3: Create test setup file**
+- [x] **Step 3: Create test setup file**
 
 Create `tests/setup.ts`:
 
@@ -594,7 +594,7 @@ Create `tests/setup.ts`:
 import '@testing-library/jest-dom'
 ```
 
-- [ ] **Step 4: Add test script**
+- [x] **Step 4: Add test script**
 
 Edit `package.json`:
 
@@ -610,7 +610,7 @@ Edit `package.json`:
 }
 ```
 
-- [ ] **Step 5: Write first test**
+- [x] **Step 5: Write first test**
 
 Create `tests/smoke.test.ts`:
 
@@ -624,7 +624,7 @@ describe('smoke', () => {
 })
 ```
 
-- [ ] **Step 6: Run tests**
+- [x] **Step 6: Run tests**
 
 ```bash
 npm run test:run
@@ -632,7 +632,7 @@ npm run test:run
 
 Expected: 1 test passes.
 
-- [ ] **Step 7: Commit**
+- [x] **Step 7: Commit**
 
 ```bash
 git add -A

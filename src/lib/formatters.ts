@@ -6,6 +6,15 @@ function trimTrailingZero(value: number, digits: number): string {
   return value.toFixed(digits).replace(/\.0+$/, '')
 }
 
+export function formatNumber(value: number): string {
+  if (isNullish(value)) return '--'
+
+  const absValue = Math.abs(value)
+  const sign = value < 0 ? '-' : ''
+
+  return `${sign}${absValue.toLocaleString('en-US')}`
+}
+
 export function formatCompactNumber(value: number): string {
   if (isNullish(value)) return '--'
 

@@ -68,8 +68,8 @@ function CountCard({
 
   return (
     <div
-      className={`flex-1 bg-bg rounded-[var(--radius-btn)] p-3 text-center ${
-        highlight ? 'border border-accent-dim' : ''
+      className={`flex-1 rounded-[var(--radius-btn)] p-3 text-center ${
+        highlight ? 'bg-accent-dim border border-accent/30' : 'bg-bg'
       }`}
     >
       <div className={`text-[28px] font-bold ${colorMap[color]}`}>{count}</div>

@@ -2280,7 +2280,7 @@ git commit -m "feat: add mini chart component"
 - Create: `src/stores/chatStore.ts`
 - Create: `tests/chatStore.test.ts`
 
-- [ ] **Step 1: Write the failing test**
+- [x] **Step 1: Write the failing test**
 
 Create `tests/chatStore.test.ts`:
 
@@ -2417,7 +2417,7 @@ describe('chat store state machine', () => {
 })
 ```
 
-- [ ] **Step 2: Run test to verify it fails**
+- [x] **Step 2: Run test to verify it fails**
 
 ```bash
 npm run test:run tests/chatStore.test.ts
@@ -2425,7 +2425,7 @@ npm run test:run tests/chatStore.test.ts
 
 Expected: All tests FAIL with import or undefined errors.
 
-- [ ] **Step 3: Implement chat store with state machine**
+- [x] **Step 3: Implement chat store with state machine**
 
 Create `src/stores/chatStore.ts`:
 
@@ -2509,7 +2509,7 @@ export const useChatStore = create<ChatState>((set, get) => ({
 }))
 ```
 
-- [ ] **Step 4: Run tests to verify they pass**
+- [x] **Step 4: Run tests to verify they pass**
 
 ```bash
 npm run test:run tests/chatStore.test.ts
@@ -2517,7 +2517,7 @@ npm run test:run tests/chatStore.test.ts
 
 Expected: All 9 tests pass.
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 git add -A
@@ -2531,7 +2531,7 @@ git commit -m "feat: add chat message state machine with comprehensive tests"
 **Files:**
 - Create: `src/hooks/useChat.ts`
 
-- [ ] **Step 1: Create useChat hook**
+- [x] **Step 1: Create useChat hook**
 
 Create `src/hooks/useChat.ts`:
 
@@ -2634,7 +2634,7 @@ export function useChat() {
 }
 ```
 
-- [ ] **Step 2: Verify types compile**
+- [x] **Step 2: Verify types compile**
 
 ```bash
 npx tsc --noEmit
@@ -2642,7 +2642,7 @@ npx tsc --noEmit
 
 Expected: No type errors.
 
-- [ ] **Step 3: Commit**
+- [x] **Step 3: Commit**
 
 ```bash
 git add -A
@@ -2656,7 +2656,7 @@ git commit -m "feat: add useChat hook with send and retry logic"
 **Files:**
 - Create: `src/components/layout/ChatPanel.tsx`
 
-- [ ] **Step 1: Create ChatPanel**
+- [x] **Step 1: Create ChatPanel**
 
 Create `src/components/layout/ChatPanel.tsx`:
 
@@ -2778,7 +2778,7 @@ export function ChatPanel() {
 }
 ```
 
-- [ ] **Step 2: Add ChatPanel to root layout**
+- [x] **Step 2: Add ChatPanel to root layout**
 
 Edit `src/routes/__root.tsx`:
 
@@ -2808,11 +2808,11 @@ function RootComponent() {
 }
 ```
 
-- [ ] **Step 3: Verify chat works**
+- [x] **Step 3: Verify chat works**
 
 Expected: Chat button visible, click opens panel, can type and send (requires backend for full test). Empty input is blocked, loading state shows "...".
 
-- [ ] **Step 4: Commit**
+- [x] **Step 4: Commit**
 
 ```bash
 git add -A

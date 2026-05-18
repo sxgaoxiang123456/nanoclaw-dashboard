@@ -69,8 +69,8 @@ export function DailyDigestPanel({ data, isLoading }: DailyDigestPanelProps) {
         <div className="text-sm text-text2 py-8 text-center">暂无日报记录</div>
       )}
 
-      {!isLoading && data?.recentDigests.map((digest) => (
-        <div key={digest.sentAt} className="mb-4 last:mb-0">
+      {!isLoading && data?.recentDigests.map((digest, dIdx) => (
+        <div key={`${digest.sentAt}-${dIdx}`} className="mb-4 last:mb-0">
           <div className="flex items-center gap-2 text-xs text-text2 mb-2 pb-2 border-b border-border">
             <span>{formatSentAt(digest.sentAt)}</span>
             <span>·</span>

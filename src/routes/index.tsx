@@ -4,11 +4,13 @@ import { useAgents } from '@/hooks/useAgents'
 import { useWorkflows } from '@/hooks/useWorkflows'
 import { useLogs } from '@/hooks/useLogs'
 import { useSecurityStatus } from '@/hooks/useSecurityStatus'
+import { useDailyDigest } from '@/hooks/useDailyDigest'
 import { StatsGrid } from '@/components/dashboard/StatsGrid'
 import { AgentList } from '@/components/dashboard/AgentList'
 import { WorkflowStatus } from '@/components/dashboard/WorkflowStatus'
 import { LogList } from '@/components/dashboard/LogList'
 import { SecurityGrid } from '@/components/dashboard/SecurityGrid'
+import { DailyDigestPanel } from '@/components/dashboard/DailyDigestPanel'
 export const Route = createFileRoute('/')({
   component: DashboardPage,
 })
@@ -21,6 +23,7 @@ function DashboardPage() {
   const { data: workflows, isLoading: workflowsLoading } = useWorkflows()
   const { data: logs, isLoading: logsLoading } = useLogs()
   const { data: security, isLoading: securityLoading } = useSecurityStatus()
+  const { data: dailyDigest, isLoading: digestLoading } = useDailyDigest()
 
   return (
     <div>
@@ -36,6 +39,7 @@ function DashboardPage() {
         <SecurityGrid security={security} isLoading={securityLoading} />
       </div>
 
+      <DailyDigestPanel data={dailyDigest} isLoading={digestLoading} />
     </div>
   )
 }

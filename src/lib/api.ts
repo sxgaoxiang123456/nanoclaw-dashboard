@@ -1,4 +1,4 @@
-import type { Agent, DashboardStats, LogEntry, SecurityStatus, Workflow } from '@/types'
+import type { Agent, DailyDigestResponse, DashboardStats, LogEntry, SecurityStatus, Workflow } from '@/types'
 import { API_BASE_URL, CHAT_TIMEOUT_MS } from './constants'
 
 // TODO(P1-ARCH): ApiResponse<T> is defined in types/index.ts but never used here.
@@ -63,6 +63,10 @@ export async function fetchLogs(): Promise<LogEntry[]> {
 
 export async function fetchSecurityStatus(): Promise<SecurityStatus> {
   return request<SecurityStatus>('/security')
+}
+
+export async function fetchDailyDigest(): Promise<DailyDigestResponse> {
+  return request<DailyDigestResponse>('/daily-digest')
 }
 
 // Chat API

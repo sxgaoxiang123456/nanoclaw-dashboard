@@ -86,3 +86,25 @@ export interface ApiResponse<T> {
   data?: T
   error?: string
 }
+
+export interface DigestItem {
+  title: string
+  summary: string
+  url: string
+  source: string
+}
+
+export interface DailyDigest {
+  sentAt: string
+  itemCount: number
+  sections: string[]
+  trigger?: 'scheduled' | 'manual'
+  items?: DigestItem[]
+}
+
+export interface DailyDigestResponse {
+  recentDigests: DailyDigest[]
+  nextRun: string | null
+  recurrence: string | null
+  mock?: boolean
+}

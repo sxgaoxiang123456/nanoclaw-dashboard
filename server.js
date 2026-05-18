@@ -78,6 +78,80 @@ function cliSpawn(command, args = []) {
   })
 }
 
+async function readSentDigests() {
+  const filePath = resolve(NANOCLAW_ROOT, 'groups/cli-with-muyu/daily-digest/data/sent-digests.jsonl')
+  if (!existsSync(filePath)) {
+    return []
+  }
+  try {
+    const content = await readFile(filePath, 'utf8')
+    const lines = content.split('\n').filter((l) => l.trim().length > 0)
+    const digests = []
+    for (const line of lines) {
+      try {
+        const parsed = JSON.parse(line)
+        digests.push(parsed)
+      } catch {
+        console.warn(`[warn] Failed to parse sent-digests line: ${line.slice(0, 100)}`)
+      }
+    }
+    // Return most recent 3, newest first
+    return digests.reverse().slice(0, 3)
+  } catch (err) {
+    console.warn('[warn] Failed to read sent-digests:', err.message)
+    return []
+  }
+}
+
+function querySQLite(dbPath, sql) {
+  return new Promise((resolve, reject) => {
+    const child = spawn('sqlite3', [dbPath, sql], {
+      stdio: ['ignore', 'pipe', 'pipe'],
+    })
+    let stdout = ''
+    let stderr = ''
+    child.stdout.on('data', (chunk) => { stdout += chunk.toString('utf8') })
+    child.stderr.on('data', (chunk) => { stderr += chunk.toString('utf8') })
+    const timer = setTimeout(() => {
+      child.kill()
+      reject(new Error('sqlite3 query timed out'))
+    }, 5_000)
+    child.on('close', (code) => {
+      clearTimeout(timer)
+      if (code !== 0) {
+        reject(new Error(stderr.trim() || `sqlite3 exited with code ${code}`))
+        return
+      }
+      resolve(stdout.trim())
+    })
+  })
+}
+
+async function getDailyDigestSchedule() {
+  if (!hasNanoClaw) {
+    return { nextRun: null, recurrence: null, mock: true }
+  }
+  try {
+    const dbPath = resolve(NANOCLAW_ROOT, 'data/v2.db')
+    if (!existsSync(dbPath)) {
+      return { nextRun: null, recurrence: null }
+    }
+    const sql = `SELECT recurrence || '|' || process_after FROM messages_in WHERE kind = 'task' AND content LIKE '%daily-digest%' AND status = 'pending' ORDER BY process_after ASC LIMIT 1`
+    const result = await querySQLite(dbPath, sql)
+    if (!result) {
+      return { nextRun: null, recurrence: null }
+    }
+    const [recurrence, processAfter] = result.split('|')
+    return {
+      nextRun: processAfter || null,
+      recurrence: recurrence || null,
+    }
+  } catch (err) {
+    console.warn('[warn] Failed to query daily-digest schedule:', err.message)
+    return { nextRun: null, recurrence: null }
+  }
+}
+
 // Mock data generators (replace with real CLI calls as backend evolves)
 function getMockStats() {
   return {
@@ -163,7 +237,7 @@ function chatSpawn(msg) {
     const timer = setTimeout(() => {
       child.kill()
       resolve(mockChatReply(msg))
-    }, 5000)
+    }, CHAT_TIMEOUT_MS)
 
     child.on('error', (err) => {
       clearTimeout(timer)
@@ -290,6 +364,27 @@ const server = createServer(async (req, res) => {
   if (req.method === 'GET' && url.pathname === '/api/security') {
     res.writeHead(200, { 'Content-Type': 'application/json' })
     res.end(JSON.stringify(getMockSecurity()))
+    return
+  }
+
+  if (req.method === 'GET' && url.pathname === '/api/daily-digest') {
+    try {
+      const [recentDigests, schedule] = await Promise.all([
+        readSentDigests(),
+        getDailyDigestSchedule(),
+      ])
+      res.writeHead(200, { 'Content-Type': 'application/json' })
+      res.end(JSON.stringify({
+        recentDigests,
+        nextRun: schedule.nextRun,
+        recurrence: schedule.recurrence,
+        ...(schedule.mock ? { mock: true } : {}),
+      }))
+    } catch (err) {
+      console.error('[error] /api/daily-digest:', err)
+      res.writeHead(500, { 'Content-Type': 'application/json' })
+      res.end(JSON.stringify({ error: 'Failed to fetch daily digest' }))
+    }
     return
   }
 

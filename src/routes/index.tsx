@@ -5,12 +5,15 @@ import { useWorkflows } from '@/hooks/useWorkflows'
 import { useLogs } from '@/hooks/useLogs'
 import { useSecurityStatus } from '@/hooks/useSecurityStatus'
 import { useDailyDigest } from '@/hooks/useDailyDigest'
+import { useContentGeneration } from '@/hooks/useContentGeneration'
 import { StatsGrid } from '@/components/dashboard/StatsGrid'
 import { AgentList } from '@/components/dashboard/AgentList'
 import { WorkflowStatus } from '@/components/dashboard/WorkflowStatus'
 import { LogList } from '@/components/dashboard/LogList'
 import { SecurityGrid } from '@/components/dashboard/SecurityGrid'
 import { DailyDigestPanel } from '@/components/dashboard/DailyDigestPanel'
+import { ContentGenerationPanel } from '@/components/dashboard/ContentGenerationPanel'
+import { publishArticle } from '@/lib/api'
 export const Route = createFileRoute('/')({
   component: DashboardPage,
 })
@@ -24,6 +27,7 @@ function DashboardPage() {
   const { data: logs, isLoading: logsLoading } = useLogs()
   const { data: security, isLoading: securityLoading } = useSecurityStatus()
   const { data: dailyDigest, isLoading: digestLoading } = useDailyDigest()
+  const { data: contentGen, isLoading: contentGenLoading } = useContentGeneration()
 
   return (
     <div>
@@ -40,6 +44,11 @@ function DashboardPage() {
       </div>
 
       <DailyDigestPanel data={dailyDigest} isLoading={digestLoading} />
+      <ContentGenerationPanel
+        data={contentGen}
+        isLoading={contentGenLoading}
+        onPublish={(taskId, platform) => publishArticle(taskId, platform)}
+      />
     </div>
   )
 }

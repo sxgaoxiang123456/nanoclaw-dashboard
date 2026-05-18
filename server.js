@@ -211,6 +211,38 @@ function getMockSecurity() {
   }
 }
 
+// Content Generation helpers
+const CONTENT_GEN_PROGRESS_PATH = resolve(NANOCLAW_ROOT, 'groups/cli-with-muyu/content-gen/data/progress.json')
+
+async function readContentGenerationProgress() {
+  try {
+    const filePath = CONTENT_GEN_PROGRESS_PATH
+    if (!existsSync(filePath)) {
+      return { taskId: null, status: 'idle', topic: null, startedAt: null, agents: {}, results: {} }
+    }
+    const content = await readFile(filePath, 'utf8')
+    const raw = JSON.parse(content)
+    // Transform backend format (agents array + articles) to frontend format (agents object + results)
+    const agentsObj = {}
+    if (Array.isArray(raw.agents)) {
+      for (const agent of raw.agents) {
+        agentsObj[agent.agentName] = agent
+      }
+    }
+    return {
+      taskId: raw.taskId ?? null,
+      status: raw.status ?? 'idle',
+      topic: raw.topic ?? null,
+      startedAt: raw.createdAt ?? null,
+      agents: agentsObj,
+      results: raw.articles ?? {},
+    }
+  } catch (err) {
+    console.warn('[warn] Failed to read content-gen progress:', err.message)
+    return { taskId: null, status: 'idle', topic: null, startedAt: null, agents: {}, results: {} }
+  }
+}
+
 function mockChatReply(msg) {
   return { reply: `你好！我是 Andy，NanoClaw 的智能助手。收到你的消息："${msg}"\n\n（注意：当前运行在 Mock 模式，NanoClaw 后端未连接）` }
 }
@@ -385,6 +417,49 @@ const server = createServer(async (req, res) => {
       res.writeHead(500, { 'Content-Type': 'application/json' })
       res.end(JSON.stringify({ error: 'Failed to fetch daily digest' }))
     }
+    return
+  }
+
+  if (req.method === 'GET' && url.pathname === '/api/content-generation') {
+    try {
+      const progress = await readContentGenerationProgress()
+      res.writeHead(200, { 'Content-Type': 'application/json' })
+      res.end(JSON.stringify(progress))
+    } catch (err) {
+      console.error('[error] /api/content-generation:', err)
+      res.writeHead(500, { 'Content-Type': 'application/json' })
+      res.end(JSON.stringify({ error: 'Failed to fetch content generation status' }))
+    }
+    return
+  }
+
+  if (req.method === 'POST' && url.pathname === '/api/content-generation/publish') {
+    let body = ''
+    req.on('data', (c) => { body += c })
+    req.on('end', async () => {
+      try {
+        const { taskId, platform } = JSON.parse(body)
+        if (!taskId || !platform) {
+          res.writeHead(400, { 'Content-Type': 'application/json' })
+          res.end(JSON.stringify({ error: 'taskId and platform are required' }))
+          return
+        }
+        // Mock publish: 90% success rate
+        const success = Math.random() > 0.1
+        const mockUrl = `https://mock.${platform}.com/p/${Math.random().toString(36).substring(2, 10)}`
+        res.writeHead(200, { 'Content-Type': 'application/json' })
+        res.end(JSON.stringify({
+          success,
+          platform,
+          publishedAt: success ? new Date().toISOString() : undefined,
+          mockUrl: success ? mockUrl : undefined,
+          error: success ? undefined : '模拟推送失败',
+        }))
+      } catch (err) {
+        res.writeHead(500, { 'Content-Type': 'application/json' })
+        res.end(JSON.stringify({ error: err.message }))
+      }
+    })
     return
   }
 

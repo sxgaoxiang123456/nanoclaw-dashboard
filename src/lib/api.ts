@@ -1,4 +1,4 @@
-import type { Agent, DailyDigestResponse, DashboardStats, LogEntry, SecurityStatus, Workflow } from '@/types'
+import type { Agent, DailyDigestResponse, DashboardStats, LogEntry, SecurityStatus, Workflow, ContentGenerationResponse, PublishResponse } from '@/types'
 import { API_BASE_URL, CHAT_TIMEOUT_MS } from './constants'
 
 // TODO(P1-ARCH): ApiResponse<T> is defined in types/index.ts but never used here.
@@ -75,6 +75,18 @@ export async function sendChatMessage(message: string): Promise<{ reply: string 
     method: 'POST',
     body: JSON.stringify({ message }),
   }, CHAT_TIMEOUT_MS)
+}
+
+// Content Generation APIs
+export async function fetchContentGeneration(): Promise<ContentGenerationResponse> {
+  return request<ContentGenerationResponse>('/content-generation')
+}
+
+export async function publishArticle(taskId: string, platform: 'xiaohongshu' | 'wechat' | 'weibo'): Promise<PublishResponse> {
+  return request<PublishResponse>('/content-generation/publish', {
+    method: 'POST',
+    body: JSON.stringify({ taskId, platform }),
+  })
 }
 
 export { ApiError }

@@ -108,3 +108,45 @@ export interface DailyDigestResponse {
   recurrence: string | null
   mock?: boolean
 }
+
+export interface AgentExecutionStatus {
+  agentName: string
+  status: 'queued' | 'running' | 'completed' | 'failed'
+  stage?: string
+  progress?: number
+  startedAt?: string
+  completedAt?: string
+  error?: string
+}
+
+export interface PlatformArticle {
+  taskId: string
+  platform: 'xiaohongshu' | 'wechat' | 'weibo'
+  title: string
+  content: string
+  wordCount: number
+  durationMs?: number
+  styleGuide?: string
+}
+
+export interface ContentGenerationResponse {
+  taskId: string | null
+  topic: string | null
+  status: 'idle' | 'researching' | 'writing' | 'completed' | 'failed'
+  startedAt: string | null
+  completedAt?: string | null
+  agents: Record<string, AgentExecutionStatus>
+  results: {
+    xiaohongshu?: PlatformArticle | null
+    wechat?: PlatformArticle | null
+    weibo?: PlatformArticle | null
+  }
+}
+
+export interface PublishResponse {
+  success: boolean
+  platform: 'xiaohongshu' | 'wechat' | 'weibo'
+  publishedAt?: string
+  mockUrl?: string
+  error?: string
+}

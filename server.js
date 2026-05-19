@@ -218,28 +218,36 @@ async function readContentGenerationProgress() {
   try {
     const filePath = CONTENT_GEN_PROGRESS_PATH
     if (!existsSync(filePath)) {
-      return { taskId: null, status: 'idle', topic: null, startedAt: null, agents: {}, results: {} }
+      return { taskId: null, status: 'idle', topic: null, startedAt: null, completedAt: null, agents: {}, results: {} }
     }
     const content = await readFile(filePath, 'utf8')
     const raw = JSON.parse(content)
-    // Transform backend format (agents array + articles) to frontend format (agents object + results)
+    // Transform backend format (coordinatorStatus + researcherStatus + writerStatuses[] + results)
+    // to frontend format (agents object keyed by agentName)
     const agentsObj = {}
-    if (Array.isArray(raw.agents)) {
-      for (const agent of raw.agents) {
-        agentsObj[agent.agentName] = agent
+    if (raw.coordinatorStatus) {
+      agentsObj[raw.coordinatorStatus.agentName] = raw.coordinatorStatus
+    }
+    if (raw.researcherStatus) {
+      agentsObj[raw.researcherStatus.agentName] = raw.researcherStatus
+    }
+    if (Array.isArray(raw.writerStatuses)) {
+      for (const writer of raw.writerStatuses) {
+        agentsObj[writer.agentName] = writer
       }
     }
     return {
       taskId: raw.taskId ?? null,
       status: raw.status ?? 'idle',
       topic: raw.topic ?? null,
-      startedAt: raw.createdAt ?? null,
+      startedAt: raw.startedAt ?? null,
+      completedAt: raw.completedAt ?? null,
       agents: agentsObj,
-      results: raw.articles ?? {},
+      results: raw.results ?? {},
     }
   } catch (err) {
     console.warn('[warn] Failed to read content-gen progress:', err.message)
-    return { taskId: null, status: 'idle', topic: null, startedAt: null, agents: {}, results: {} }
+    return { taskId: null, status: 'idle', topic: null, startedAt: null, completedAt: null, agents: {}, results: {} }
   }
 }
 
